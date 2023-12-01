@@ -22,41 +22,6 @@ def carParkApi(data):
         
 def checkAvailableSlotApi():
     try:
-        # total_slot = "SELECT COUNT(slot_status.slot_id) FROM slot_status LEFT JOIN slot_details ON slot_status.slot_id = slot_details.slot_id WHERE slot_details.status = 'active'"
-        # cursor.execute(total_slot)
-        # count = cursor.fetchone()[0]
-
-        # query = "SELECT slot_status.slot_id, slot_status.mall_slot_number, slot_status.Available, slot_details.qr_code_image FROM slot_status LEFT JOIN slot_details ON slot_status.slot_id = slot_details.slot_id WHERE slot_details.status = 'active' AND slot_status.Available = 'Available' limit 1"
-        # # query = "SELECT slot_details.qr_code_image FROM slot_status LEFT JOIN slot_details ON slot_status.slot_id = slot_details.slot_id WHERE slot_details.status = 'active' AND slot_status.Available = 'Available' limit 1"
-        # cursor.execute(query)
-        # data = cursor.fetchone()
-
-        # cursor.close()
-        # connection.close()
-        
-        # if data[3]:
-        #     image_data = data[3]
-        #     print(image_data)
-
-        #     # Convert image data to bytes
-        #     image_bytes = io.BytesIO(image_data)
-
-        #     # Serve the image as a response
-        #     return image_bytes
-
-        # else:
-        #     return "No image found in the database"
-        # # image = data[3]
-        # # binary_data = base64.b64decode(image)
-
-        # # if data: 
-        # #     image_data = binary_data
-
-        # #     # Save the image data to a temporary file
-        # #     temp_file_path = 'D:/D/Certification/Projects/Updated parking slot/public/temp_image.jpeg'
-        # #     with open(temp_file_path, 'wb') as temp_file:
-        # #         temp_file.write(image_data)
-        # #     print(temp_file_path)
         select_query = "SELECT slot_status.slot_id, slot_status.mall_slot_number, slot_details.code_name, slot_details.qr_code_image FROM slot_status LEFT JOIN slot_details ON slot_status.slot_id = slot_details.slot_id WHERE slot_details.status = 'active' AND slot_status.Available = 'Available' limit 1"
         cursor.execute(select_query)
         result = cursor.fetchone()
