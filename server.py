@@ -5,7 +5,7 @@ from route.car_process import car_park_blueprint
 from route.users import user_blueprint
 
 
-app = flask.Flask(__name__, template_folder='D:/D/Certification/Projects/Updated parking slot/public/')
+app = flask.Flask(__name__, template_folder='D:/D/Certification/Projects/Updated parking slot/public/', static_folder="static")
 
 # Register api's 
 app.register_blueprint(user_blueprint, url_prefix='/api')
