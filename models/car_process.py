@@ -31,6 +31,8 @@ def checkAvailableSlotApi():
         if result:
             slot_id, mall_slot_code, code_name, image_data = result
             img_bytesio = BytesIO(image_data)
+
+            
             return {
                  'code_data' : code_name,
                  'img_data' : base64.b64encode(image_data).decode('utf-8'),
