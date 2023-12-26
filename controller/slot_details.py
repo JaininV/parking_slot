@@ -1,10 +1,10 @@
 #Import users function from model folder
 from flask import Flask, render_template, jsonify, request
-from models.slot_details import addNumberApi
+from models.slot_details import addCarNumberApi
 import asyncio
 from flask import Flask, render_template
 
-def addNumber():
-    # data = request.form
-    page = addNumberApi()
+def addCarNumber():
+    data = request.form
+    page = addCarNumberApi(data)
     return page

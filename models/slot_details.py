@@ -7,35 +7,45 @@ from io import BytesIO
 import json
 
 # Simulated async function 
-def addNumberApi():
-    current_time = datetime.now()
-    print(current_time)
-    return {'data': current_time}
-        
-def checkAvailableSlotApi():
+def addCarNumberApi(data):
     try:
-        select_query = "SELECT slot_status.slot_id, slot_status.mall_slot_number, slot_details.code_name, slot_details.qr_code_image FROM slot_status LEFT JOIN slot_details ON slot_status.slot_id = slot_details.slot_id WHERE slot_details.status = 'active' AND slot_status.Available = 'Available' limit 1"
-        cursor.execute(select_query)
-        result = cursor.fetchone()
+        car_number = data['car_number']
+        slot = data['slot_id']
+
+        current_time = datetime.now()
+        print(current_time)
+
+        # Insert data into database
+        insert_query = "INSERT INTO `car_holder`(`slot_id`, `car_number`, `entry_time`, `total_pay`) VALUES (%s, %s, %s, %s)"
+        insert_data = (
+            slot,
+            car_number,
+            current_time,
+            0
+        )
+        cursor.execute(insert_query, insert_data)
+        connection.commit()
+
+        # Add into slot table
+        datatable = "slot_"+slot
+        insert_slot_query = "INSERT INTO `slot_{}`(`car_number`, `entry_time`, `total_payment`) VALUES (%s, %s, %s)".format(slot)
+        insert_slot_data = (
+            car_number, 
+            current_time, 
+            0
+        )
+        cursor.execute(insert_slot_query, insert_slot_data)
+        connection.commit()
+        
+        # Update status of slot
+        update_query = "UPDATE  slot_status  SET  Available ='Unavailable' WHERE  slot_id = {}".format(slot)
+        update_data = (slot)
+        cursor.execute(update_query)
+        connection.commit()
+
         cursor.close()
         connection.close()
-
-        if result:
-            slot_id, mall_slot_code, code_name, image_data = result
-            img_bytesio = BytesIO(image_data)
-            return {
-                 'code_data' : code_name,
-                 'img_data' : base64.b64encode(image_data).decode('utf-8'),
-                 'slot_id': slot_id,
-                 'mall_slot_code' : mall_slot_code
-            }
-        
-        else:
-            return "Image not found:"
-            
+        return "Isert sucessfuly"
     except Exception as err:
-            return err
-        
-    
-
+        return err
     

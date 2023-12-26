@@ -29,11 +29,11 @@ def addSlotApi(data):
         query = """
             CREATE TABLE IF NOT EXISTS `slot_{}` (
                 id int NOT NULL AUTO_INCREMENT,
-                car_number int NOT NULL,
+                car_number varchar(15) NOT NULL,
                 entry_time datetime(6) NOT NULL,
                 exit_time datetime(6) NOT NULL,
                 total_time int NOT NULL,
-                total_payment int NOT NULL,
+                total_payment int NOT NULL, 
                 PRIMARY KEY (id)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
             """.format(slot_id)
