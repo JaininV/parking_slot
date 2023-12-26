@@ -11,4 +11,4 @@ def carPark():
 
 def checkAvailableSlot():
     page = checkAvailableSlotApi()
-    return render_template('index.html', c_data = page['code_data'], img = page['img_data'])
+    return render_template('index.html', c_data = page['code_data'], img = page['img_data']) 

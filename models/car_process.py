@@ -27,12 +27,17 @@ def checkAvailableSlotApi():
         result = cursor.fetchone()
         cursor.close()
         connection.close()
-
+ 
         if result:
             slot_id, mall_slot_code, code_name, image_data = result
             img_bytesio = BytesIO(image_data)
 
-            
+            # update_status_query = "UPDATE `slot_status` SET `Available`='Unavailable' WHERE `slot_id`=%s;"
+            # update_status_data = (slot_id)
+
+            # cursor.execute(update_status_query, update_status_data)
+            # connection.close()
+
             return {
                  'code_data' : code_name,
                  'img_data' : base64.b64encode(image_data).decode('utf-8'),

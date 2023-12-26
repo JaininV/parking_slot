@@ -15,3 +15,4 @@ def check_availbale_slot_api():
     # Your API logic here
     data = checkAvailableSlot()
     return data
+ 
