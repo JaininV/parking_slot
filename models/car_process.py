@@ -10,7 +10,7 @@ import json
 def carParkApi(data):
     current_time = datetime.now()
     print(current_time)
-    try:
+    try: 
         cursor.execute("SELECT * FROM slot_status")
         results = cursor.fetchall()
         connection.commit()

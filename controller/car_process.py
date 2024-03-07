@@ -8,7 +8,7 @@ def carPark():
     data = request.form
     page = carParkApi(data)
     return page
-
+ 
 def checkAvailableSlot():
     page = checkAvailableSlotApi()
     return render_template('index.html', c_data = page['code_data'], img = page['img_data']) 

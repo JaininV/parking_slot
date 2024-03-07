@@ -2,7 +2,7 @@
 from flask import Flask, render_template, jsonify, request
 from models.users import getDataApi, addUserApi
 import asyncio
-
+ 
 def userData(): 
     user_data = getDataApi()
     return user_data

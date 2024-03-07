@@ -5,15 +5,16 @@ from mysql.connector import Error
 # Replace these values with your MySQL server information
 config = {
     'user': 'root',
-    'password': 'root',
+    'password': 'Jainin@0511',
     'host': 'localhost',
     'database': 'parking_slot'
-
 }
 
 try:
     connection = mysql.connector.connect(**config)
     cursor = connection.cursor(buffered=True)
+    print(cursor)
+    print("Connected success")
 
 except Error as err:
     print(f"Error: {err}")

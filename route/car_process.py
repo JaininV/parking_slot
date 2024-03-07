@@ -7,7 +7,7 @@ car_park_blueprint = Blueprint('car_process', __name__)
 @car_park_blueprint.route('/car_park', methods=['GET'])
 def car_park_api():
     # Your API logic here
-    data = carPark()
+    data = carPark() 
     return data 
 
 @car_park_blueprint.route('/slot', methods=['GET'])
